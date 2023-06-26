@@ -20,37 +20,16 @@ public class PrincipalActivity extends AppCompatActivity {
         Button posts = (Button) findViewById(R.id.btPosts);
         Button albums = (Button) findViewById(R.id.btAlbums);
 
-        todo.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                abreTodoActivity(v);
-            }
-        });
+        todo.setOnClickListener(v -> goTo(TodoActivity.class));
 
-        posts.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                abrePostsActivity(v);
-            }
-        });
+        posts.setOnClickListener(v -> goTo(PostsActivity.class));
 
-        albums.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                abreAlbumsActivity(v);
-            }
-        });
+        albums.setOnClickListener(v -> goTo(AlbumsActivity.class));
     }
 
-    public void abreTodoActivity(View view) {
-        Intent intent = new Intent(this, TodoActivity.class);
+    public void goTo(Class<?> activity) {
+        Intent intent = new Intent(this, activity);
         startActivity(intent);
     }
 
-    public void abrePostsActivity(View view) {
-        Intent intent = new Intent(this, PostsActivity.class);
-        startActivity(intent);
-    }
-
-    public void abreAlbumsActivity(View view) {
-        Intent intent = new Intent(this, AlbumsActivity.class);
-        startActivity(intent);
-    }
 }
