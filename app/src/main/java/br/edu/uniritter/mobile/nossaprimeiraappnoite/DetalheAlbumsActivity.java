@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
-import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Albums;
-import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Todo;
+import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Album;
 
 public class DetalheAlbumsActivity extends AppCompatActivity {
 
@@ -21,18 +19,18 @@ public class DetalheAlbumsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Parcelable prc = intent.getParcelableExtra("objAlbums");
-        if (prc instanceof Albums) {
+        if (prc instanceof Album) {
 
         }
-        Albums albums = intent.getParcelableExtra("objAlbums");
-        bind(albums);
+        Album album = intent.getParcelableExtra("objAlbums");
+        bind(album);
 
     }
     public void trocaLayout(View v) {
         setContentView(R.layout.layout);
         Intent intent = getIntent();
-        Albums albums = intent.getParcelableExtra("objAlbums");
-        bind(albums);
+        Album album = intent.getParcelableExtra("objAlbums");
+        bind(album);
 
     }
     /*public void cbClick(View v) {
@@ -42,7 +40,7 @@ public class DetalheAlbumsActivity extends AppCompatActivity {
         todo.setCompleted(cb.isChecked());
     }*/
 
-    private void bind(Albums obj) {
+    private void bind(Album obj) {
         TextView tv = findViewById(R.id.tvId);
         tv.setText(obj.getId()+"");
         tv = findViewById(R.id.tvIdUser);

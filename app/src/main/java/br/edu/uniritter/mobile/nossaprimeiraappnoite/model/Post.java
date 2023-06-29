@@ -5,38 +5,39 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.RequiresApi;
 
-public class Todo implements Parcelable {
+public class Post implements Parcelable {
 
     private int userId;
     private int id;
     private String title;
-    private boolean completed;
+    private String body;
 
-    public Todo(int userId, int id, String title, boolean completed) {
+    public Post(int userId, int id, String title, String body) {
         this.userId = userId;
         this.id = id;
         this.title = title;
-        this.completed = completed;
+        this.body = body;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    private Todo(Parcel parcel) {
+    private Post(Parcel parcel) {
         this.userId = parcel.readInt();
         this.id = parcel.readInt();
         this.title = parcel.readString();
-        this.completed = parcel.readBoolean();
+        this.body = parcel.readString();
     }
 
-    public static final Creator<Todo> CREATOR = new Creator<Todo>() {
+    public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
         @RequiresApi(api = Build.VERSION_CODES.Q)
         @Override
-        public Todo createFromParcel(Parcel in) { return new Todo(in); }
+        public Post createFromParcel(Parcel in) { return new Post(in); }
 
         @Override
-        public Todo[] newArray(int size) { return new Todo[size]; }
+        public Post[] newArray(int size) { return new Post[size]; }
     };
 
     public int getUserId() { return userId; }
-    public void setUser (int userId) { this.userId = userId; }
+    public void setUserId(int userId) { this.userId = userId; }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -44,8 +45,8 @@ public class Todo implements Parcelable {
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
 
-    public boolean isCompleted() { return completed; }
-    public void setCompleted(boolean completed) { this.completed = completed; }
+    public String getBody() { return body; }
+    public void setBody(String body) { this.body = body; }
 
     @Override
     public int describeContents() { return 0; }
@@ -56,8 +57,7 @@ public class Todo implements Parcelable {
         parcel.writeInt(this.userId);
         parcel.writeInt(this.id);
         parcel.writeString(this.title);
-        parcel.writeBoolean(this.completed);
-
+        parcel.writeString(this.body);
     }
 
 }

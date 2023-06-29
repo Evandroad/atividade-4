@@ -8,8 +8,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.widget.TextView;
 
-import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Albums;
-import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Posts;
+import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Post;
 
 public class DetalhePostsActivity extends AppCompatActivity {
 
@@ -20,18 +19,18 @@ public class DetalhePostsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Parcelable prc = intent.getParcelableExtra("objPosts");
-        if (prc instanceof Posts) {
+        if (prc instanceof Post) {
 
         }
-        Posts posts = intent.getParcelableExtra("objPosts");
-        bind(posts);
+        Post post = intent.getParcelableExtra("objPosts");
+        bind(post);
 
     }
     public void trocaLayout(View v) {
         setContentView(R.layout.layout);
         Intent intent = getIntent();
-        Posts posts = intent.getParcelableExtra("objPosts");
-        bind(posts);
+        Post post = intent.getParcelableExtra("objPosts");
+        bind(post);
 
     }
     /*public void cbClick(View v) {
@@ -41,7 +40,7 @@ public class DetalhePostsActivity extends AppCompatActivity {
         todo.setCompleted(cb.isChecked());
     }*/
 
-    private void bind(Posts obj) {
+    private void bind(Post obj) {
         TextView tv = findViewById(R.id.tvId);
         tv.setText(obj.getId()+"");
         tv = findViewById(R.id.tvIdUser);

@@ -13,9 +13,9 @@ import br.edu.uniritter.mobile.nossaprimeiraappnoite.model.Todo;
 
 public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder> {
 
-    private List<Todo> listaTodos;
+    private final List<Todo> listTodos;
 
-    public class TodoViewHolder extends RecyclerView.ViewHolder {
+    public static class TodoViewHolder extends RecyclerView.ViewHolder {
         public View viewTodo;
         public TodoViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -23,10 +23,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
         }
     }
 
-    public TodoAdapter(List<Todo> todos) {
-        this.listaTodos = todos;
-    }
-
+    public TodoAdapter(List<Todo> todos) { this.listTodos = todos; }
 
     @NonNull
     @Override
@@ -37,11 +34,11 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TodoViewHolder holder, int position) {
-        Todo obj = this.listaTodos.get(position);
+        Todo obj = this.listTodos.get(position);
         TextView tv = holder.viewTodo.findViewById(R.id.tvId);
-        tv.setText(obj.getId()+"");
+        tv.setText(String.valueOf(obj.getId()));
         tv = holder.viewTodo.findViewById(R.id.tvIdUser);
-        tv.setText(obj.getUserId()+"");
+        tv.setText(String.valueOf(obj.getUserId()));
         tv = holder.viewTodo.findViewById(R.id.tvTitle);
         tv.setText(obj.getTitle());
         CheckBox cb = holder.viewTodo.findViewById(R.id.cbCompleted);
@@ -49,7 +46,6 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.TodoViewHolder
     }
 
     @Override
-    public int getItemCount() {
-        return this.listaTodos.size();
-    }
+    public int getItemCount() { return this.listTodos.size(); }
+
 }
